@@ -1,0 +1,104 @@
+.catalog__list {
+    display: flex;
+    margin: 18px 0 0 0;
+    padding: 0;
+    justify-content: space-between;
+    flex-wrap: wrap;
+}
+
+.catalog__item {
+    display: flex;
+    margin-top: 30px;
+    @include box-size(360px, 581px);
+    font-family: 'Lato';
+    flex-direction: column;
+    background: $white-color2;
+
+    &>a:nth-child(1) {
+        position: relative;
+        display: block;
+    }
+
+    &>a:nth-child(1):before {
+        display: none;
+        content: '';
+        position: absolute;
+        @include box-size(360px, 420px);
+        top: 0;
+        left: 0;
+        background-image: url(../img/fetured-pic-2fon.svg);
+    }
+
+    &>a:nth-child(1):hover:before {
+        display: block;
+        opacity: .8;
+    }
+}
+
+.catalog__item-pic {
+    outline: none;
+}
+
+.catalog__item-title {
+    @include font(13px, 16px, 400, $black-color1);
+    padding: 25px 0 0 18px;
+    margin: 0;
+    text-transform: uppercase;
+    text-decoration: none;
+    outline: none;
+
+    &:hover {
+        opacity: .8;
+        color: $pink-color;
+    }
+
+    &:active {
+        opacity: .5;
+    }
+}
+
+.catalog__item-text {
+    @include font(14px, 17px, 300, $grey-color1);
+    padding: 12px 29px 0 18px;
+    margin: 0;
+}
+
+.catalog__item-price {
+    @include font(16px, 19px, 400, $pink-color);
+    padding: 18px 0 0 18px;
+    margin: 0;
+}
+
+@media (max-width:$tablet-max) and (min-width:$tablet-min) {
+    .catalog__list {
+        margin-top: 32px;
+        width: 100%;
+        justify-content: space-around;
+    }
+
+    .catalog__item {
+        margin: 16px 0 0 0;
+    }
+
+    .catalog__item:nth-child(3) {
+        display: none;
+    }
+}
+
+@media (max-width:$phone-max) and (min-width:$phone-min) {
+    .catalog__list {
+        margin-top: 65px;
+        padding: 0;
+        width: 100%;
+        justify-content: center;
+    }
+
+    .catalog__item {
+        margin: 0 0 17px 0;
+        padding: 0;
+    }
+
+    .catalog__item:nth-child(3) {
+        display: none;
+    }
+}
