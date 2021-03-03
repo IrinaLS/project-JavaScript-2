@@ -1,0 +1,172 @@
+.footer {
+    background-color: $black-color;
+    width: 1600px;
+    margin: 0 auto;
+
+    .footer__picture {
+        background-image: url(../img/footer-picture.jpg);
+        background-color:$white-color;
+        min-height: 448px;
+
+        .footer__picture-item {
+            @include position(flex, center, space-between);
+
+            .footer__picture-foto {
+                padding: 87px 0 0 0;
+            }
+
+            .footer__picture-subscribe {
+                padding: 150px 0 0 0;
+                @include box-size(551px, 144px);
+                text-align: center;
+                text-transform: uppercase;
+
+                .footer__picture-subscribe-text {
+                    @include font(24px, 38px, 700, $grey-color1);
+                }
+
+                .footer__picture-subscribe-for {
+                    @include font(18px, 30px, 400, $grey-color1);
+                }
+
+                .footer__picture-block-email {
+                    margin-top: 32px;
+                    display: flex;
+                    justify-content: center;
+                }
+
+                input[type="email"] {
+                    @include box-size(203px, 49px);
+                    background-color: $white-color3;
+                    border-radius: 23px 0 0 23px;
+                    border: none;
+                    vertical-align: middle;
+                    outline: none;
+                    @include font(14px, 16px, 700, $grey-color1);
+                    padding: 0 0 0 30px;
+
+                    &:hover {
+                        background-color: $white-color;
+                        color: $pink-color;
+                    }
+                }
+
+                button[type="submit"] {
+                    @include box-size(123px, 49px);
+                    background-color: $pink-color;
+                    border-radius: 0 23px 23px 0;
+                    border: none;
+                    vertical-align: middle;
+                    outline: none;
+                    padding: 0;
+                    @include font(14px, 16px, 400, $white-color);
+
+                    &:hover {
+                        color:$black-color;
+                        background-color:$pink-color2;
+                        transition: background-color 3s;
+                        font-weight: 700;
+                    }
+                }
+            }
+        }
+    }
+
+    .footer__last-line {
+        min-height: 79px;
+        @include position(flex, center, space-between);
+
+        .footer__last-line-copyright {
+            @include font(16px, 19px, 400, $white-color1);
+        }
+
+        .footer__last-line-img {
+            border: none;
+            outline: none;
+            padding: 0 0 0 3px;
+            outline: none;
+
+            &>img:hover {
+                transform: scale(1.5);    
+            }
+        }
+        .footer__last-line-icon {
+            @include position(flex, center, space-between);
+        }
+    }
+}
+
+@media (max-width:$tablet-max) and (min-width:$tablet-min) {
+    .footer {
+        width: 100%;
+
+        .footer__picture {
+            background-image: url(../img/footer-picture-small.jpg);
+            background-color:$white-color;
+            background-size: 100% 100%;
+
+            .footer__picture-item {
+                flex-direction: column;
+
+                .footer__picture-foto {
+                    padding: 54px 0 0 0;
+                }
+
+                .footer__picture-subscribe {
+                    padding: 48px 0 0 0;
+
+                    .footer__picture-block-email {
+                        padding: 27px 0 140px 0;
+                    }
+                }
+            }
+        }
+
+        .footer__last-line {
+            width: 92%;
+        }
+    }
+}
+
+@media (max-width:$phone-max) and (min-width:$phone-min) {
+    .footer {
+        width: 100%;
+
+        .footer__picture {
+            background-image: url(../img/footer-picture-small.jpg);
+            background-color:$white-color;
+            background-size: 100% 100%;
+
+            .footer__picture-item {
+                flex-direction: column;
+
+                .footer__picture-foto {
+                    padding: 54px 0 0 0;
+                }
+
+                .footer__picture-subscribe {
+                    padding: 59px 0 0 0;
+
+                    .footer__picture-block-email {
+                        padding: 22px 0 109px 0;
+                    }
+                }
+            }
+        }
+
+        .footer__last-line {
+            width: 100%;
+            min-height: 143px;
+            @include position(flex, center, center);
+            flex-direction: column-reverse;
+
+            .footer__last-line-icon {
+                padding: 43px 0 40px 0;
+            }
+
+            .footer__last-line-copyright {
+                padding: 0 0 9px 0;
+            }
+        }
+    }
+}

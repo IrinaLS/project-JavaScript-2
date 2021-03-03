@@ -1,0 +1,102 @@
+.stock__list {
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    margin: 63px 0 0 0;
+    padding: 0;
+
+    .stock__item {
+        @include box-size(360px, 260px);
+        @include position(flex, center, center);
+        flex-direction: column;
+
+        &:nth-child(1) {
+            background-image: url(../img/stock-women.jpg);
+            background-color:$white-color;
+        }
+
+        &:nth-child(2) {
+            background-image: url(../img/stock-men.jpg);
+            background-color:$white-color;
+        }
+
+        &:nth-child(3) {
+            background-image: url(../img/stock-kid.jpg);
+            background-color:$white-color;
+        }
+
+        &:nth-child(4) {
+            background-image: url(../img/stock-goods.jpg);
+            background-color:$white-color;
+            margin-top: 30px;
+            @include box-size(100%, 180px);
+        }
+
+        &:hover {
+            box-shadow: 0 0 5px 2px $pink-color1;
+        }
+
+        .stock__item-name {
+            @include font(16px, 19px, 400, $white-color);
+            text-transform: uppercase;
+            text-decoration: none;
+            outline: none;
+
+            &:hover {
+                opacity: .8;
+            }
+
+            &:active {
+                opacity: .5;
+                color: $pink-color;
+            }
+        }
+
+        .stock__item-category {
+            @include font(24px, 28px, 700, $pink-color);
+            text-transform: uppercase;
+            text-decoration: none;
+            outline: none;
+
+            &:hover {
+                opacity: .8;
+            }
+
+            &:active {
+                opacity: .5;
+                color: $white-color;
+            }
+        }
+    }
+}
+
+@media (max-width:$tablet-max) and (min-width:$tablet-min) {
+    .stock__list {
+        margin: 19px 0 0 0;
+
+        .stock__item {
+            width: 31%;
+
+            &:nth-child(4) {
+                margin-top: 19px;
+            }
+        }
+    }
+}
+
+@media (max-width:$phone-max) and (min-width:$phone-min) {
+    .stock__list {
+        width: 100%;
+        display: flex;
+        justify-content: center;
+        flex-direction: column;
+        align-items: center;
+        margin: 64px 0 0 0;
+        padding: 0;
+
+        .stock__item {
+            width: 92%;
+            margin-bottom: 32px;
+        }
+    }
+}
