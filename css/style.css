@@ -1752,7 +1752,7 @@ ul {
   line-height: 19px;
   color: #5D5D5D;
   text-align: right;
-  padding: 0 37px 21px 0;
+  padding: 37px 37px 21px 0;
   text-transform: uppercase;
 }
 .cart__cards .cart__shipping-adress .cart__shipping-sum hr {
