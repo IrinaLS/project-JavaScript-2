@@ -24,32 +24,6 @@ class ApiMock {
         return this.catalog
     }
 }
-class GoodsList {
-    constructor() {
-        this.api = new ApiMock()
-        this.pullHtml = document.querySelector('.catalog__list')
-        this.summAllGoods = 0
-    }
-    getHtml(title, price, picture, discribe) {
-        return `<li class="catalog__item"><a href="#" class="catalog__item-pic"><img src="${picture}" alt="picture" width="360" height="420"></a> <a href="#"                  class="catalog__item-title">${title}</a><p class="catalog__item-text">${discribe}</p><p class="catalog__item-price">${price}</p></li>`
-    }
-    render() {
-        this.api.fetch().map(({
-            title, price, picture, discribe
-        }) => this.pullHtml.insertAdjacentHTML('beforeend', this.getHtml(title, price, picture, discribe)))
-    }
-    summingAllGoods() {
-        this.api.fetch().map(({
-            price
-        }) => this.summAllGoods += Number(price.slice(1)));
-        return this.summAllGoods
-    }
-}
-const goodsList = new GoodsList();
-goodsList.render();
-console.log(goodsList.summingAllGoods());
-
-//Класс одиного товара в корзине.  В класс товара в корзине добавляется размер, цвет, количество - остальное наследуется от товара
 class CartItem extends GoodItem {
     constructor(good, color, size, quantity) {
         super(good.title, good.price, good.picture, good.discribe)
@@ -58,7 +32,6 @@ class CartItem extends GoodItem {
         this.quantity = quantity
     }
 }
-//Класс списка товаров в корзине - вначале пустой массив, затем заполняется новыми объектами - товарами в корзине класса CartItem, summ- общая сумма товаров в корзине 
 class CartList {
     constructor() {
         this.list = []
@@ -66,7 +39,7 @@ class CartList {
         this.pullHtmlSumm = document.querySelector('.cart__shipping-sum')
         this.summ = 0
     }
-  addItem(good, color, size, quantity) {
+    addItem(good, color, size, quantity) {
         var cartItem = new CartItem(good, color, size, quantity)
         this.list.push(cartItem)
         this.summ += Number(cartItem.price.slice(1)) * cartItem.quantity
@@ -97,9 +70,8 @@ class CartList {
                         </li>`
     }
 }
-//запуск заполнения корзины
-//const cartItems = new ApiMock();
-//const cartList = new CartList();
-//cartList.addItem(cartItems.catalog[0], "red", 52, 2);
-//cartList.addItem(cartItems.catalog[1], "dark", 50, 1);
-//cartList.addItem(cartItems.catalog[2], "blue", 48, 2);
+const cartItems = new ApiMock();
+const cartList = new CartList();
+cartList.addItem(cartItems.catalog[0], "red", 52, 2);
+cartList.addItem(cartItems.catalog[1], "dark", 50, 1);
+cartList.addItem(cartItems.catalog[2], "blue", 48, 2);
