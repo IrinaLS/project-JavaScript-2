@@ -6,56 +6,78 @@ class GoodItem {
         this.discribe = discribe
     }
 }
-class ApiMock {
+class Api {
     constructor() {
-        this.catalog = [
-            new GoodItem('Gucci', '$150', './img/fetured-pic-1.jpg', 'Known for her sculptural takes on traditional tailoring, Australian arbiter of cool Kym Ellery teams up with Moda Operandi.')
-           , new GoodItem('Versace', '$250', './img/catalog-pic-2.jpg', 'Known for her sculptural takes on traditional tailoring, Australian arbiter of cool Kym Ellery teams up with Moda Operandi.')
-            , new GoodItem('Burberry', '$50', './img/fetured-pic-3.jpg', 'Known for her sculptural takes on traditional tailoring, Australian arbiter of cool Kym Ellery teams up with Moda Operandi.')
-            , new GoodItem('Louis Vuitton', '$350', './img/fetured-pic-4.jpg', 'Known for her sculptural takes on traditional tailoring, Australian arbiter of cool Kym Ellery teams up with Moda Operandi.')
-            , new GoodItem('Prada', '$450', './img/catalog-pic-5.jpg', 'Known for her sculptural takes on traditional tailoring, Australian arbiter of cool Kym Ellery teams up with Moda Operandi.')
-            , new GoodItem('Giorgio Armani', '$50', './img/catalog-pic-6.jpg', 'Known for her sculptural takes on traditional tailoring, Australian arbiter of cool Kym Ellery teams up with Moda Operandi.')
-            , new GoodItem('Gucci', '$150', './img/catalog-pic-7.jpg', 'Known for her sculptural takes on traditional tailoring, Australian arbiter of cool Kym Ellery teams up with Moda Operandi.')
-            , new GoodItem('Versace', '$250', './img/catalog-pic-8.jpg', 'Known for her sculptural takes on traditional tailoring, Australian arbiter of cool Kym Ellery teams up with Moda Operandi.')
-            , new GoodItem('Burberry', '$50', './img/catalog-pic-9.jpg', 'Known for her sculptural takes on traditional tailoring, Australian arbiter of cool Kym Ellery teams up with Moda Operandi.')
-        , ]
+        this.url = '/goods.json';
     }
-    fetch() {
-        return this.catalog
+    fetch(error, success) {
+        let xhr;
+        if (window.XMLHttpRequest) {
+            xhr = new XMLHttpRequest();
+        }
+        else if (window.ActiveXObject) {
+            xhr = new ActiveXObject("Microsoft.XMLHTTP");
+        }
+        xhr.onreadystatechange = function () {
+            if (xhr.readyState === 4) {
+                if (xhr.status === 200) {
+                    success(JSON.parse(xhr.responseText));
+                }
+                else if (xhr.status > 400) {
+                    error('ОШИБКА');
+                }
+            }
+        }
+        xhr.open('GET', this.url, true);
+        xhr.send();
+    }
+    fetchPromise() {
+        return new Promise((resolve, reject) => {
+            this.fetch(reject, resolve)
+        })
     }
 }
 class GoodsList {
     constructor() {
-        this.api = new ApiMock()
+        this.goods = [];
+        this.api = new Api()
         this.pullHtml = document.querySelector('.catalog__list')
-        this.summAllGoods = 0
+        const fetch = this.api.fetchPromise();
+        fetch.then((data) => {
+            this.goods = data
+            this.render()
+            this.eventListener()
+        }).catch((err) => {
+            this.onFetchError(err)
+        });
+    }
+    onFetchError(err) {
+        this.pullHtml.insertAdjacentHTML('beforeend', `<h3>${err}</h3>`);
     }
     getHtml(title, price, picture, discribe) {
         return `<li class="catalog__item"><a href="#" class="catalog__item-pic"><img src="${picture}" alt="picture" width="360" height="420"></a> <a href="#"                  class="catalog__item-title">${title}</a><p class="catalog__item-text">${discribe}</p><p class="catalog__item-price">${price}</p></li>`
     }
     render() {
-        this.api.fetch().map(({
+        this.goods.map(({
             title, price, picture, discribe
         }) => this.pullHtml.insertAdjacentHTML('beforeend', this.getHtml(title, price, picture, discribe)))
     }
-    summingAllGoods() {
-        this.api.fetch().map(({
-            price
-        }) => this.summAllGoods += Number(price.slice(1)));
-        return this.summAllGoods
+    eventListener() {
+        document.querySelectorAll('.catalog__item-pic').forEach(function (elem) {
+            elem.addEventListener('click', ready)
+        })
     }
 }
 const goodsList = new GoodsList();
-goodsList.render();
-console.log(goodsList.summingAllGoods());
-
 //Класс одиного товара в корзине.  В класс товара в корзине добавляется размер, цвет, количество - остальное наследуется от товара
 class CartItem extends GoodItem {
-    constructor(good, color, size, quantity) {
+    constructor(good, numberGood, color = "black", size = 50, quantity = 1) {
         super(good.title, good.price, good.picture, good.discribe)
         this.color = color
         this.size = size
         this.quantity = quantity
+        this.numberGood = numberGood
+        this.input = document.querySelector('input');
     }
 }
 //Класс списка товаров в корзине - вначале пустой массив, затем заполняется новыми объектами - товарами в корзине класса CartItem, summ- общая сумма товаров в корзине 
@@ -66,14 +88,20 @@ class CartList {
         this.pullHtmlSumm = document.querySelector('.cart__shipping-sum')
         this.summ = 0
     }
-  addItem(good, color, size, quantity) {
-        var cartItem = new CartItem(good, color, size, quantity)
-        this.list.push(cartItem)
-        this.summ += Number(cartItem.price.slice(1)) * cartItem.quantity
-        this.pullHtmlCart.insertAdjacentHTML('beforeend', this.getHtmlCart(cartItem))
+    addItem(good, numberGood) {
+        let isInCart = this.checkCardInCart(numberGood)
+        if (isInCart < 0) {
+            let cartItem = new CartItem(good, numberGood)
+            this.list.push(cartItem)
+            this.summ += Number(cartItem.price.slice(1)) * cartItem.quantity
+            this.pullHtmlCart.insertAdjacentHTML('beforeend', this.getHtmlCart(cartItem))
+            this.pullHtmlCart.lastChild.querySelector('.cart__cards-close').addEventListener('click', this.closeCard);
+            this.showSumm()
+        }
+    }
+    showSumm() {
         this.pullHtmlSumm.removeChild(this.pullHtmlSumm.children[0])
-        this.pullHtmlSumm.insertAdjacentHTML('afterbegin', ` <p class="cart__shipping-grand-total"> grand total $ <span
-                                class="cart__shipping-grand-total-red">${this.summ}</span></p>`)
+        this.pullHtmlSumm.insertAdjacentHTML('afterbegin', ` <p class="cart__shipping-grand-total"> grand total $ <span class="cart__shipping-grand-total-red">${cartList.summ} </span></p>`)
     }
     getHtmlCart(cart) {
         return ` <li class="cart__cards-item"> <img src=${cart.picture} alt="pic1" width="262"
@@ -87,7 +115,7 @@ class CartList {
                                 <form class="cart__cards-item-form"> quantity:&nbsp;&nbsp;&nbsp;&nbsp;
                                     <input type="number" placeholder="${cart.quantity}"> </form>
                             </div>
-                            <button class="cart__cards-close" type="button">
+                            <button class="cart__cards-close" type="button" name="${cart.numberGood}">
                                 <svg width="18" height="18" viewBox="0 0 18 18" fill="none"
                                     xmlns="http://www.w3.org/2000/svg">
                                     <path
@@ -96,10 +124,25 @@ class CartList {
                             </button>
                         </li>`
     }
+    closeCard(e) {
+        let numberGood = e.path[0].ownerDocument.activeElement.attributes[2].nodeValue
+        let numberCart = cartList.checkCardInCart(numberGood)
+        cartList.summ -= Number(cartList.list[numberCart].price.slice(1)) * cartList.list[numberCart].quantity
+        cartList.list.splice(numberCart, 1)
+        cartList.pullHtmlCart.removeChild(this.parentNode)
+        cartList.showSumm()
+    }
+    checkCardInCart(number) {
+        let index = -1
+        cartList.list.forEach(function (elem, listIndex) {
+            if (elem.numberGood == number) index = listIndex
+        })
+        return index
+    }
 }
-//запуск заполнения корзины
-//const cartItems = new ApiMock();
-//const cartList = new CartList();
-//cartList.addItem(cartItems.catalog[0], "red", 52, 2);
-//cartList.addItem(cartItems.catalog[1], "dark", 50, 1);
-//cartList.addItem(cartItems.catalog[2], "blue", 48, 2);
+const cartList = new CartList();
+
+function ready(e) {
+    let numberGood = e.toElement.innerHTML[28];
+    cartList.addItem(goodsList.goods[numberGood - 1], numberGood)
+}
