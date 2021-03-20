@@ -1,0 +1,173 @@
+.fetured__title {
+    @include font(30px, 36px, 400, $black-color);
+    padding-top: 97px;
+    margin: 0;
+    text-align: center;
+    text-transform: capitalize;
+
+    &:hover {
+        animation: tracking-in-expand 1 2s;
+    }
+}
+
+.fetured__text {
+    padding-top: 6px;
+    margin: 0;
+    @include font(14px, 17px, 400, $grey-color);
+    text-align: center;
+}
+
+.fetured__list {
+    width: 100%;
+    display: grid;
+    margin-top: 48px;
+    padding: 0;
+    grid-template-columns: repeat(3, 360px);
+    justify-content: space-between;
+    row-gap: 30px;
+}
+
+.fetured__item {
+    display: flex;
+    @include box-size(360px, 581px);
+    font-family: 'Lato';
+    flex-direction: column;
+    background: $white-color2;
+
+    &>a:nth-child(1) {
+        position: relative;
+        display: block;
+    }
+
+    &>a:nth-child(1):before {
+        display: none;
+        content: '';
+        position: absolute;
+        @include box-size(360px, 420px);
+        top: 0;
+        left: 0;
+        background-image: url(../img/fetured-pic-2fon.svg);
+    }
+
+    &>a:nth-child(1):hover:before {
+        display: block;
+        opacity: .8;
+    }
+}
+
+.fetured__item-pic {
+    outline: none;
+}
+
+.fetured__item-title {
+    @include font(13px, 16px, 400, $black-color1);
+    padding: 25px 0 0 18px;
+    margin: 0;
+    text-transform: uppercase;
+    text-decoration: none;
+    outline: none;
+
+    &:hover {
+        opacity: .8;
+        color: $pink-color;
+    }
+
+    &:active {
+        opacity: .5;
+    }
+}
+
+.fetured__item-text {
+    @include font(14px, 17px, 300, $grey-color1);
+    padding: 12px 29px 0 18px;
+    margin: 0;
+}
+
+.fetured__item-price {
+    @include font(16px, 19px, 400, $pink-color);
+    padding: 18px 0 0 18px;
+    margin: 0;
+}
+
+.fetured__button {
+    @include box-size(100%, 191px);
+    @include position(flex, center, center);
+
+    .fetured__button-browse-all-product {
+        @include box-size(211px, 32px);
+        @include font(16px, 19px, 400, $pink-color1);
+        outline: 1px solid $pink-color1;
+        text-align: center;
+        text-transform: capitalize;
+        text-decoration: none;
+        padding-top: 15px;
+
+        &:hover {
+            animation-duration: 2s;
+            animation-name: changecolor;
+            border-radius: 30px;
+            outline: none;
+            color: $black-color;
+            font-weight: 700;
+        }
+
+        &:active {
+            opacity: 0.5;
+            color: $white-color;
+            background-color: $pink-color1;
+        }
+    }
+}
+
+@media (max-width:$tablet-max) and (min-width:$tablet-min) {
+    .fetured__title {
+        padding-top: 155px;
+    }
+
+    .fetured__text {
+        padding-top: 4px;
+    }
+
+    .fetured__list {
+        width: 100%;
+        margin-top: 72px;
+        padding: 0;
+        grid-template-columns: repeat(2, 360px);
+        justify-content: center;
+        row-gap: 16px;
+        column-gap: 16px;
+    }
+
+    .fetured__button {
+        @include box-size(100%, 145px);
+    }
+}
+
+@media (max-width:$phone-max) and (min-width:$phone-min) {
+    .fetured__title {
+        padding-top: 64px;
+    }
+
+    .fetured__text {
+        padding-top: 3px;
+    }
+
+    .fetured__list {
+
+        width: 100%;
+        margin-top: 65px;
+        padding: 0;
+        grid-template-columns: repeat(1, 360px);
+        justify-content: center;
+        row-gap: 16px;
+    }
+
+    .fetured__item {
+        margin: 0 0 17px 0;
+        padding: 0;
+    }
+
+    .fetured__button {
+        @include box-size(100%, 185px);
+    }
+}

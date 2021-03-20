@@ -1,0 +1,139 @@
+html,
+body,
+div,
+span,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+p,
+a,
+img,
+var,
+center,
+ul,
+li,
+form,
+label,
+legend,
+footer,
+menu,
+nav,
+section {
+    margin: 0;
+    padding: 0;
+    border: 0;
+}
+
+
+/* HTML5 display-role reset for older browsers */
+
+article,
+aside,
+details,
+figcaption,
+figure,
+footer,
+header,
+hgroup,
+menu,
+nav,
+section {
+    display: block;
+}
+
+body {
+    line-height: 1;
+}
+
+ol,
+ul {
+    list-style: none;
+}
+
+.visually-hidden {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    margin: -1px;
+    padding: 0;
+    overflow: hidden;
+    border: 0;
+    clip: rect(0 0 0 0)
+}
+
+.body {
+    font-family: 'Lato', sans-serif;
+}
+
+.container {
+    width: 1140px;
+    margin: 0 auto;
+}
+
+@media (max-width:$tablet-max) and (min-width:$tablet-min) {
+    .container {
+        width: 96%;
+    }
+}
+
+@media (max-width:$phone-max) and (min-width:$phone-min) {
+    .container {
+        width: 92%;
+    }
+}
+
+@keyframes slide-bottom {
+    0% {
+        transform: translateY(0);
+    }
+
+    100% {
+        transform: translateY(100px);
+    }
+}
+
+@keyframes tracking-in-expand {
+    0% {
+        letter-spacing: -0.5em;
+        opacity: 0;
+        color: $pink-color;
+        font-weight: 700;
+    }
+
+    40% {
+        opacity: 0.6;
+        color: $pink-color;
+        font-weight: 700;
+    }
+
+    100% {
+        opacity: 1;
+        color: $pink-color;
+        font-weight: 700;
+    }
+}
+
+@keyframes changecolor {
+    from {
+        background-color: $white-color;
+    }
+
+    to {
+        background-color: $pink-color1;
+    }
+}
+
+@keyframes text-focus-in {
+    0% {
+        filter: blur(12px);
+        opacity: 0;
+    }
+
+    100% {
+        filter: blur(0px);
+        opacity: 1;
+    }
+}
