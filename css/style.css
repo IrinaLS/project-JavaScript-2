@@ -149,17 +149,21 @@ ul {
   align-items: center;
   justify-content: space-between;
 }
-
-#header__brand {
-  background-color: #6F6E6E;
-  outline: none;
-  border: none;
-  font-size: 14px;
+.header__search input[type=text] {
+  width: 203px;
+  min-height: 49px;
+  font-size: 24px;
   font-style: normal;
   font-weight: 700;
   font-family: "Lato";
   line-height: 17px;
   color: #FF6A6A;
+  color: #F16D7F;
+  background-color: #9F9F9F;
+  border-radius: 23px 23px 23px 23px;
+  border: none;
+  outline: none;
+  vertical-align: middle;
 }
 
 .header__button {
