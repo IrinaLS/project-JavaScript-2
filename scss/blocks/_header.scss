@@ -17,12 +17,17 @@
     padding: 10px 0 0 41px;
     outline: none;  
     @include position(flex, center, space-between); 
-}
-#header__brand {
-    background-color: $grey-color3;
-    outline: none;  
-    border: none;
-    @include font(14px, 17px, 700, $pink-color1);   
+    
+    input[type="text"] {
+        @include box-size(203px, 49px);
+        @include font(24px, 17px, 700, $pink-color1);
+        color: $pink-color;
+        background-color: $grey-color;
+        border-radius: 23px 23px 23px 23px;
+        border: none;
+        outline: none;  
+        vertical-align: middle;               
+    }
 }
 .header__button {
     background-color: transparent;

@@ -1,11 +1,11 @@
 [
-    { "title": "Gucci", "price": "$150", "picture": "./img/fetured-pic-1.jpg", "discribe":"Known for her sculptural takes on traditional tailoring, Australian arbiter of cool Kym Ellery teams up with Moda Operandi."},
-    { "title": "Versace", "price": "$250", "picture":"./img/catalog-pic-2.jpg" , "discribe":"Known for her sculptural takes on traditional tailoring, Australian arbiter of cool Kym Ellery teams up with Moda Operandi."},
-    { "title": "Burberry", "price": "$150", "picture": "./img/fetured-pic-3.jpg", "discribe":"Known for her sculptural takes on traditional tailoring, Australian arbiter of cool Kym Ellery teams up with Moda Operandi."},
-    { "title": "Louis Vuitton", "price": "$350", "picture":"./img/fetured-pic-4.jpg" , "discribe":"Known for her sculptural takes on traditional tailoring, Australian arbiter of cool Kym Ellery teams up with Moda Operandi."},
-    { "title": "Prada", "price": "$450", "picture": "./img/catalog-pic-5.jpg", "discribe":"Known for her sculptural takes on traditional tailoring, Australian arbiter of cool Kym Ellery teams up with Moda Operandi."},
-    { "title": "Giorgio Armani", "price": "$50", "picture":"./img/catalog-pic-6.jpg" , "discribe":"Known for her sculptural takes on traditional tailoring, Australian arbiter of cool Kym Ellery teams up with Moda Operandi."},
-    { "title": "Gucci", "price": "$150", "picture":"./img/catalog-pic-7.jpg" , "discribe":"Known for her sculptural takes on traditional tailoring, Australian arbiter of cool Kym Ellery teams up with Moda Operandi."},
-    { "title": "Versace", "price": "$250", "picture":"./img/catalog-pic-8.jpg" , "discribe":"Known for her sculptural takes on traditional tailoring, Australian arbiter of cool Kym Ellery teams up with Moda Operandi."},
-    { "title": "Burberry", "price": "$50", "picture":"./img/catalog-pic-9.jpg" , "discribe":"Known for her sculptural takes on traditional tailoring, Australian arbiter of cool Kym Ellery teams up with Moda Operandi."}
+    { "title": "Gucci", "price": 150, "picture": "./img/fetured-pic-1.jpg", "discribe":"Known for her sculptural takes on traditional tailoring, Australian arbiter of cool Kym Ellery teams up with Moda Operandi.","quantity":0, "id":0},
+    { "title": "Versace", "price": 250, "picture":"./img/catalog-pic-2.jpg" , "discribe":"Known for her sculptural takes on traditional tailoring, Australian arbiter of cool Kym Ellery teams up with Moda Operandi.","quantity":0, "id":1},
+    { "title": "Burberry", "price": 150, "picture": "./img/fetured-pic-3.jpg", "discribe":"Known for her sculptural takes on traditional tailoring, Australian arbiter of cool Kym Ellery teams up with Moda Operandi.","quantity":0, "id":2},
+    { "title": "Louis Vuitton", "price": 350, "picture":"./img/fetured-pic-4.jpg" , "discribe":"Known for her sculptural takes on traditional tailoring, Australian arbiter of cool Kym Ellery teams up with Moda Operandi.","quantity":0, "id":3},
+    { "title": "Prada", "price": 450, "picture": "./img/catalog-pic-5.jpg", "discribe":"Known for her sculptural takes on traditional tailoring, Australian arbiter of cool Kym Ellery teams up with Moda Operandi.","quantity":0, "id":4},
+    { "title": "Giorgio Armani", "price": 50, "picture":"./img/catalog-pic-6.jpg" , "discribe":"Known for her sculptural takes on traditional tailoring, Australian arbiter of cool Kym Ellery teams up with Moda Operandi.","quantity":0, "id":5},
+    { "title": "Gucci", "price": 150, "picture":"./img/catalog-pic-7.jpg" , "discribe":"Known for her sculptural takes on traditional tailoring, Australian arbiter of cool Kym Ellery teams up with Moda Operandi.","quantity":0, "id":6},
+    { "title": "Versace", "price": 250, "picture":"./img/catalog-pic-8.jpg" , "discribe":"Known for her sculptural takes on traditional tailoring, Australian arbiter of cool Kym Ellery teams up with Moda Operandi.","quantity":0, "id":7},
+    { "title": "Burberry", "price": 50, "picture":"./img/catalog-pic-9.jpg" , "discribe":"Known for her sculptural takes on traditional tailoring, Australian arbiter of cool Kym Ellery teams up with Moda Operandi.","quantity":0, "id":8}
 ]
