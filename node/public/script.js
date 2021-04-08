@@ -105,8 +105,8 @@ const vue = new Vue({
     , mounted() {
         fetch('/data').then(response => response.json()).then(data => {
             this.goods = data;
-            this.filtredGoods = data;
-            console.log(this.filtredGoods);
+            this.filteredGoods = data;
+            console.log(this.filteredGoods);
         }).catch(err => {
             console.log(err);
         })
