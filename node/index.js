@@ -14,7 +14,19 @@ app.get('/data', (req, res) => {
         }
         else {
             console.log(err);
-            end(JSON.stringify(err));
+            res.end(JSON.stringify(err));
+        }
+    })
+});
+app.get('/cart', (req, res) => {
+    fs.readFile('./public/cart.json', 'utf-8', (err, data) => {
+        if (!err) {
+            res.setHeader('Content-Type', 'Application/json');
+            res.end(data);
+        }
+        else {
+            console.log(err);
+            res.end(JSON.stringify(err));
         }
     })
 });
@@ -28,13 +40,13 @@ app.post('/cart', bodyParser.json(), (req, res) => {
                 }
                 else {
                     console.log(err);
-                    end(JSON.stringify(err));
+                    res.end(JSON.stringify(err));
                 }
             });
         }
         else {
             console.log(err);
-            end(JSON.stringify(err));
+            res.end(JSON.stringify(err));
         }
     })
 });
@@ -48,13 +60,13 @@ app.post('/stats', bodyParser.json(), (req, res) => {
                 }
                 else {
                     console.log(err);
-                    end(JSON.stringify(err));
+                    res.end(JSON.stringify(err));
                 }
             });
         }
         else {
             console.log(err);
-            end(JSON.stringify(err));
+            res.end(JSON.stringify(err));
         }
     })
 })
